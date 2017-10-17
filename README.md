@@ -1,4 +1,4 @@
-#**Template of the web project by alex.gorn20**
+#Template of the web project by alex.gorn20
 
 Use steps below to setup this template:
 

@@ -33,9 +33,14 @@ p {
 
 html,
 body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
+    /////////////////////////////////////
+    /////// Не забыть указать резервные шрифты для font-family
+    //////////////////////////////////////
 }
 
 .container {

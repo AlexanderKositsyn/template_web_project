@@ -1,0 +1,125 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: 16px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+html,
+body {
+  overflow-y: hidden;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  font-family: "ubuntulight";
+  line-height: 1.2;
+  color: $text-primary;
+  @include full-hd {
+    font-size: 1.2rem;
+  }
+  @include quad-hd {
+    font-size: 2.6rem;
+  }
+  @include width-3k {
+    font-size: 2.6rem;
+  }
+  @include width-4k {
+    font-size: 4.3rem;
+  }
+  @include big-tablet {
+    font-size: 12px;
+  }
+  @include tablet {
+    font-size: 16px;
+  }
+  @include small-tablet {
+    font-size: 0.8125rem;
+  }
+  @include mobile {
+    font-size: 0.7125rem;
+  }
+}
+
+body {
+  font-size: 14px;
+}
+
+.body--active {
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #414141;
+  height: 100%;
+}
+
+.maincontent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #414141;
+  transition: top 1s;
+  height: 100%;
+  &--active-menu {
+    position: static;
+  }
+}
+
+.section {
+  background: url(../img/bg-texture-form.png) center center / cover no-repeat;
+  background-color: #414141;
+  min-height: 650px;
+  height: 1px;
+  height: 100%;
+  @include tablet {
+    min-height: initial;
+  }
+  @include mobile {
+    min-height: initial;
+  }
+}
+
+.container {
+  padding-left: 7%;
+  padding-right: 7.4%;
+  max-width: 1104px;
+  margin: 0 auto;
+  height: 100%;
+  @include full-hd {
+    max-width: initial;
+  }
+  @include tablet {
+    max-width: 720px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @include mobile {
+    max-width: 460px;
+  }
+}

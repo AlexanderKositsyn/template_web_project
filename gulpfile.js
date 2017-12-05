@@ -15,6 +15,8 @@ const gulp = require("gulp"),
   sass = require("gulp-sass"),
   sourcemaps = require("gulp-sourcemaps"),
   pxtorem = require("gulp-pxtorem"),
+  pug = require("gulp-pug"), // компилятор для pug
+  prettify = require("gulp-html-prettify"), // структуризует код html
   ///////////////////////////////////
   ///Build production
   ///////////////////////////////////
@@ -67,6 +69,7 @@ var config = {
   }
 };
 
+// автоматом нигде не запускается, нужно специально его вызывать однократно чтобы сгенерировать спрайт
 gulp.task("svgSpriteBuild", function() {
   return (gulp
       .src("app/icons/i/*.svg")
@@ -121,6 +124,21 @@ gulp.task("webpackJs", function() {
     .pipe(gulp.dest("app/js/"));
 });
 
+// компилятор для pug
+gulp.task("pug", function() {
+  return gulp
+    .src("app/pug/*.pug")
+    .pipe(
+      debug({
+        title: "src"
+      })
+    )
+    .pipe(pug())
+    .pipe(prettify({ indent_char: " ", indent_size: 2 }))
+    .pipe(gulp.dest("app"))
+    .pipe(browserSync.stream());
+});
+
 //Препроцессор sass
 gulp.task("sass", function() {
   return gulp
@@ -149,7 +167,10 @@ gulp.task("server", function() {
     server: "./app"
   });
 
+  // в таске sass браузер тоже обновляется
   gulp.watch("app/sass/**/*.scss", ["sass"]);
+  //в таске pug браузерсинк перезагружается
+  gulp.watch("app/pug/**/*.pug", ["pug"]);
   browserSync
     .watch(["app/*.html", "app/**/*.js"])
     .on("change", browserSync.reload);
@@ -162,13 +183,14 @@ gulp.task("server", function() {
 gulp.task("minall", function() {
   return (gulp
       .src("app/*.html")
+      // собирает файлы в зависимоти от комментариев которые стоят в html
       .pipe(useref())
       .pipe(
         debug({
           title: "src"
         })
       )
-      // из файла index.html выбираем все файлы Js
+      // из файла index.html выбираем все уже совмещенный файл (один если все файлы били под комментарием build) Js
       .pipe(gulpif("*.js", uglify())) // не минифицирует по стандарту es6
       .on("error", function(err) {
         gutil.log(gutil.colors.red("[Error]"), err.toString());
@@ -212,6 +234,7 @@ gulp.task("fonts", function() {
 gulp.task("images", () => {
   gulp
     .src("app/img/**/*.*")
+    //минимизируем картинки
     .pipe(
       imagemin({
         interlaced: true,
@@ -221,6 +244,7 @@ gulp.task("images", () => {
     .pipe(gulp.dest("dist/img"));
 });
 
+// перетаскиваем все svg
 gulp.task("svg", () => {
   gulp.src("app/icons/sprite/sprite.svg").pipe(gulp.dest("dist/icons/sprite"));
 });

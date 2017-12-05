@@ -17,9 +17,11 @@
     "gulp-clean-css": "^3.9.0",
     "gulp-debug": "^3.1.0",
     "gulp-filter": "^5.0.1",
+    "gulp-html-prettify": "0.0.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.4.0",
     "gulp-notify": "^3.0.0",
+    "gulp-pug": "^3.3.0",
     "gulp-pxtorem": "^3.0.0",
     "gulp-replace": "^0.6.1",
     "gulp-rimraf": "^0.2.1",
@@ -47,15 +49,20 @@
     "build": "webpack --env production",
     "serv": "static dist"
   },
-  "main": "",
-  "repository": "https://github.com/AlexanderKositsyn/burger_club.git",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderKositsyn/burger_club.git"
+  },
   "author": "AlexanderKositsyn <alex.gorn20@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.2.1",
-    "jquery.dotdotdot": "^3.1.0",
-    "mobile-detect": "^1.3.7",
     "normalize.css": "^7.0.0",
     "svg4everybody": "^2.1.9"
-  }
+  },
+  "description": "Use steps below to setup this project:",
+  "bugs": {
+    "url": "https://github.com/AlexanderKositsyn/burger_club/issues"
+  },
+  "homepage": "https://github.com/AlexanderKositsyn/burger_club#readme"
 }

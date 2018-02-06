@@ -1,4 +1,2 @@
-@import "_variables";
-@import "_mixin";
-@import "global/_global-fonts";
-@import "global/_global-scaffolding.scss";
+@import "./_core.scss";
+@import "./blocks/_friend-filter.scss";

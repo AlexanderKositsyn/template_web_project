@@ -2,11 +2,12 @@
 
 const gulp = require("gulp"),
   path = require("path"),
-  debug = require("gulp-debug"),
-  gutil = require("gulp-util"), // показывает файлы находящиеся в обработке
+  debug = require("gulp-debug"), // показывает файлы находящиеся в обработке
+  gutil = require("gulp-util"),
   ///////////////////////////////////
   ///Work
   ///////////////////////////////////
+  plumber = require("gulp-plumber"), // говорит об ошибках, а не выкидывает сразу
   wiredep = require("wiredep").stream, // вставляет автоматически bower js и css в файлы html где установленны комментарии для плагина
   browserSync = require("browser-sync").create(), //запускает браузер и редактирование в режиме реального времени
   cleanCSS = require("gulp-clean-css"), // минимизирует файлы css
@@ -126,17 +127,22 @@ gulp.task("webpackJs", function() {
 
 // компилятор для pug
 gulp.task("pug", function() {
-  return gulp
-    .src("app/pug/*.pug")
-    .pipe(
-      debug({
-        title: "src"
-      })
-    )
-    .pipe(pug())
-    .pipe(prettify({ indent_char: " ", indent_size: 2 }))
-    .pipe(gulp.dest("app"))
-    .pipe(browserSync.stream());
+  return (gulp
+      .src("app/pug/pages/*.pug")
+      .pipe(plumber())
+      .pipe(
+        debug({
+          title: "src"
+        })
+      )
+      .pipe(
+        pug({
+          pretty: "\t"
+        })
+      )
+      // .pipe(prettify({ indent_char: " ", indent_size: 2 }))
+      .pipe(gulp.dest("app"))
+      .pipe(browserSync.stream()) );
 });
 
 //Препроцессор sass

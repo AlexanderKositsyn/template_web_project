@@ -25,25 +25,22 @@ p {
   margin: 0;
 }
 
+pre {
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: "robotoregular";
+  color: $text-primary;
+}
+
 html,
 body {
-  overflow-y: hidden;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-}
-
-body {
-}
-
-.wrapper {
-  overflow: hidden;
-
-  height: 100%;
-}
-
-.container {
 }

@@ -1,3 +1,15 @@
 .friend-filter {
-  background: red;
+  background: blueviolet;
+  &__title {
+  }
+  &__title-text {
+  }
+  &__svg {
+    width: 30px;
+    height: 30px;
+  }
+  &__add {
+    width: 30px;
+    height: 30px;
+  }
 }
